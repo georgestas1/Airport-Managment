@@ -11,15 +11,15 @@ This Python program simulates an airport's traffic control system using priority
 
 1. Clone the repository:
 
-    git clone https://github.com/georgestas1/airport-traffic-control.git
+    git clone https://github.com/georgestas1/Airport-Managment.git
 
 2. Navigate to the directory:
 
-    cd airport-traffic-control
+    cd Airport-Managment
 
 3. Run the program:
 
-    python airport_traffic_control.py
+    python airport.py
 
 ## Description
 
