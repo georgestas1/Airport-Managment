@@ -1,64 +1,33 @@
-Airport Simulation
-This script simulates an airport with landing and takeoff requests. It uses two priority queues to manage these requests: one for landing and one for takeoff.
+# Airport Traffic Control Simulation
 
-Table of Contents
-Installation
-Usage
-Functions
-simulate_airport
-add_request
-control_airport
-Notes
-Installation
-To run the script, you need to have Python 3.x and the priority_linked_list module installed.
+This Python program simulates an airport's traffic control system using priority queues. It generates random landing, takeoff, and emergency landing requests for flights, prioritizing emergency landings over regular ones.
 
-Install Python 3.x from the official website.
-Install the priority_linked_list module using pip:
-Copy code
-pip install priorityqueue
-Usage
-After installing the required dependencies, simply run the script using Python:
+## Requirements
 
-Copy code
-python airport_simulation.py
-Functions
-simulate_airport
-This function simulates airport operations with landing and takeoff requests.
+- Python 3.x
+- priority_linked_list.py
 
-Parameters
+## Installation
 
-None
+1. Clone the repository:
 
-Returns
+    git clone https://github.com/yourusername/airport-traffic-control.git
 
-None
+2. Navigate to the directory:
 
-add_request
-This function adds a landing, takeoff, or emergency request to the appropriate queue.
+    cd airport-traffic-control
 
-Parameters
+3. Run the program:
 
-flight_number: int, the flight number to add to the queue
-request_type: str, the type of request ("landing", "takeoff", or "emergency")
-Returns
+    python airport_traffic_control.py
 
-None
+## Description
 
-control_airport
-This function controls airport operations, processing landing and takeoff requests.
+The program simulates airport operations by processing landing and takeoff requests. It generates random flight numbers and request types, including regular landing, takeoff, and emergency landing requests. Requests are added to priority queues based on their priority level. Emergency landing requests have the highest priority, followed by regular landing and takeoff requests. The program then processes these requests accordingly, simulating the landing and takeoff procedures with random sleep times.
 
-Parameters
+## Usage
 
-None
+To run the simulation, execute the `airport_traffic_control.py` file. The program will simulate airport operations for a predefined number of requests. Each request cycle includes adding random flight requests, processing them through the control_airport function, and completing the cycle.
 
-Returns
+## Example
 
-None
-
-Notes
-The simulate_airport function generates 2 sets of 3 random requests, simulating 2 requests overall.
-Each request is added to the appropriate queue with a random priority between 0 and 1.
-The control_airport function processes landing requests first, followed by takeoff requests.
-For each request, the script prints a message indicating the request type and flight number, as well as a message when the flight has landed or taken off.
-Between requests, the script waits for a random sleep time between 0.5 and 2.0 seconds.
-After each request set, the script waits for 1 second before starting the next request set.
