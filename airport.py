@@ -4,8 +4,8 @@ from priority_linked_list import PriorityQueue
 
 # Generate a random sleep time between 0.5 and 2.0 seconds
 sleep_time = random.uniform(0.5, 2.0)
-# Fixed sleep time of 0.5 seconds
-sleep_time2 = 0.5
+# Generate a random sleep time between 0,4 and 0,6 seconds
+sleep_time2 = random.uniform(0.4,0.6)
 
 def simulate_airport():
     # Create a priority queue for landing requests
