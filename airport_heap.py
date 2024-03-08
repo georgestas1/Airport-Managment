@@ -1,17 +1,11 @@
-import random
+import heapq
 import time
-from priority_linked_list import PriorityQueue
-
-# Generate a random sleep time between 0.5 and 2.0 seconds
-sleep_time = random.uniform(0.5, 2.0)
-# Generate a random sleep time between 0,4 and 0,6 seconds
-sleep_time2 = random.uniform(0.4,0.6)
+import random
 
 def simulate_airport():
-    # Create a priority queue for landing requests
-    landing_queue = PriorityQueue()
-    # Create a priority queue for takeoff requests
-    takeoff_queue = PriorityQueue()
+    # Initialize the landing and takeoff heaps
+    landing_heap = []
+    takeoff_heap = []
     # Generate a random sleep time between 0.5 and 2.0 seconds
     sleep_time = random.uniform(0.5, 2.0)
     # Generate a random sleep time between 0,4 and 0,6 seconds
@@ -19,41 +13,39 @@ def simulate_airport():
 
     def add_request(flight_number, request_type):
         if request_type == "landing":
-            # Add landing request to the landing queue with priority 0
-            landing_queue.insert(flight_number, 0)
+            # Add landing request to the landing heap with priority 0
+            heapq.heappush(landing_heap, (0, flight_number))
         elif request_type == "emergency":
-            # Add emergency landing request to the landing queue with priority 1
-            landing_queue.insert(flight_number, 1)
+            # Add emergency landing request to the landing heap with priority 1
+            heapq.heappush(landing_heap, (1, flight_number))
         elif request_type == "takeoff":
-            # Add takeoff request to the takeoff queue with priority 0
-            takeoff_queue.insert(flight_number, 0)
+            # Add takeoff request to the takeoff heap with priority 0
+            heapq.heappush(takeoff_heap, (0, flight_number))
 
         # Print the flight number and request type
         print(f"Flight {flight_number} requests {request_type}")
 
     def control_airport():
-        # Process landing requests until the landing queue is empty
-        while not landing_queue.empty():
-            # Get the highest priority landing request and remove it from the list
-            flight_number = landing_queue.remove()
-            # Print the landing message
+        # Process landing requests until the landing heap is empty
+        while landing_heap:
+            # Get the highest priority landing request and remove it from the heap
+            priority, flight_number = heapq.heappop(landing_heap)
             print(f"Flight {flight_number} is landing...")
             # Sleep for the random sleep time
             time.sleep(sleep_time)
             # Print the landed message
             print(f"Flight {flight_number} has landed.")
 
-        # Process takeoff requests until the takeoff queue is empty
-        while not takeoff_queue.empty():
-            # Get the highest priority takeoff request and remove it from the list
-            flight_number = takeoff_queue.remove()
-            # Print the takeoff message
+        # Process takeoff requests until the takeoff heap is empty
+        while takeoff_heap:
+            # Get the highest priority takeoff request and remove it from the heap
+            priority, flight_number = heapq.heappop(takeoff_heap)
             print(f"Flight {flight_number} is taking off...")
             # Sleep for the random sleep time
             time.sleep(sleep_time)
             # Print the taken off message
             print(f"Flight {flight_number} has taken off.")
-
+    
     def request():
                 # Generate a random flight number between 100 and 999
                 flight_number = random.randint(100, 999)
@@ -63,7 +55,6 @@ def simulate_airport():
                 add_request(flight_number, request_type)
                 # Sleep for the fixed sleep time
                 time.sleep(sleep_time2)
-
     def choose():
         # Generate a random number between 0 and 1
         choice = random.randint(0,1)
@@ -94,5 +85,4 @@ def simulate_airport():
                 # Call the control_airport function to handle the remaining requests
                 control_airport()
     choose()
-# Call the simulate_airport function to start the simulation
-simulate_airport()
+simulate_airport()  
