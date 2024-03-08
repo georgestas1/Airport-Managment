@@ -50,24 +50,45 @@ def simulate_airport():
             # Print the taken off message
             print(f"Flight {flight_number} has taken off.")
 
-    # Simulate 2 requests
-    for n in range(2):
-        print(f"----Request No: {n + 1} started----")
-        # Add 3 random requests to the airport
-        for i in range(3):
-            # Generate a random flight number between 100 and 999
-            flight_number = random.randint(100, 999)
-            # Choose a random request type
-            request_type = random.choice(["landing", "takeoff", "emergency"])
-            # Add the request to the appropriate queue
-            add_request(flight_number, request_type)
-            # Sleep for the fixed sleep time
-            time.sleep(sleep_time2)
+    def request():
+                # Generate a random flight number between 100 and 999
+                flight_number = random.randint(100, 999)
+                # Choose a random request type
+                request_type = random.choice(["landing", "takeoff", "emergency"])
+                # Add the request to the appropriate queue
+                add_request(flight_number, request_type)
+                # Sleep for the fixed sleep time
+                time.sleep(sleep_time2)
 
-        # Call the control_airport function to control the airport operations
-        control_airport()
-        print(f"----Request No: {n + 1} completed----\n")
-        time.sleep(1)
-
+    def choose():
+        # Generate a random number between 0 and 1
+        choice = random.randint(0,1)
+        # Generate a random number between 6 and 16
+        choice2 = random.randint(6,16)
+        # Initialize a counter for control actions
+        control_number = 0
+        # Initialize a counter for requests
+        request_number = 0
+        # Loop for a random number of times (between 6 and 16)
+        for i in range(choice2):
+            # Generate a new random number between 0 and 1
+            choice = random.randint(0,1)
+            # If the random number is 0
+            if choice == 0:
+                # Call the request function
+                request()
+                # Increment the request counter
+                request_number += 1
+            # If the random number is 1
+            elif choice == 1:
+                # Call the control_airport function
+                control_airport() 
+                # Increment the control action counter
+                control_number += 1      
+        # If there were more requests than control actions
+        if request_number > control_number:
+                # Call the control_airport function to handle the remaining requests
+                control_airport()
+    choose()
 # Call the simulate_airport function to start the simulation
 simulate_airport()
