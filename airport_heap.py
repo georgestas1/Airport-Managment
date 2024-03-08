@@ -85,4 +85,5 @@ def simulate_airport():
                 # Call the control_airport function to handle the remaining requests
                 control_airport()
     choose()
+# Call the simulate_airport function to start the simulation
 simulate_airport()  
